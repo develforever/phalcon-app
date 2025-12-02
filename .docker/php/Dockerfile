@@ -16,7 +16,9 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
 
 USER phalcon
 
-RUN composer global require phalcon/devtools:"^5.0@dev" --dev
+RUN composer global require phalcon/devtools:"^5.0@dev" --dev  \
+    && composer clear-cache \
+    && echo 'export PATH="$HOME/.composer/vendor/bin:$PATH"' >> ~/.bashrc
 
 EXPOSE 9000
 CMD ["php-fpm"]
