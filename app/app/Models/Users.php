@@ -8,7 +8,7 @@ class Users extends \Phalcon\Mvc\Model
 
     /**
      *
-     * @var integer
+     * @var string
      */
     public $id;
 

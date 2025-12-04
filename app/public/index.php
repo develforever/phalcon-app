@@ -1,9 +1,9 @@
 <?php
+
 declare(strict_types=1);
 
 use Phalcon\Di\FactoryDefault;
-
-error_reporting(E_ALL);
+use Phalcon\Mvc\Dispatcher;
 
 define('BASE_PATH', dirname(__DIR__));
 define('APP_PATH', BASE_PATH . '/app');
@@ -14,6 +14,19 @@ try {
      * the services that provide a full stack framework.
      */
     $di = new FactoryDefault();
+
+    // $di->set(
+    //     'dispatcher',
+    //     function () {
+    //         $dispatcher = new Dispatcher();
+
+    //         $dispatcher->setDefaultNamespace(
+    //             'App\Controllers'
+    //         );
+
+    //         return $dispatcher;
+    //     }
+    // );
 
     /**
      * Read services
