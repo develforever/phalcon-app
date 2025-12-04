@@ -14,6 +14,10 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
     && mv composer.phar /usr/local/bin/composer
 
 
+RUN usermod -s /bin/bash phalcon
+
+ADD ./.docker/php/php.ini /usr/local/etc/php/conf.d/xxx-custom.ini
+
 USER phalcon
 
 RUN composer global require phalcon/devtools:"^5.0@dev" --dev  \
