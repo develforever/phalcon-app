@@ -1,6 +1,12 @@
 <?php
+
 declare(strict_types=1);
 
+use AppDomain\Application\User\Handler\ChangeUserEmailHandler;
+use AppDomain\Application\User\Handler\RegisterUserHandler;
+use AppDomain\Application\User\Query\UserReadModel;
+use AppDomain\Domain\User\UserRepository;
+use AppDomain\Infrastructure\Persistence\EventStoreUserRepository;
 use Phalcon\Html\Escaper;
 use Phalcon\Flash\Direct as Flash;
 use Phalcon\Mvc\Model\Metadata\Memory as MetaDataAdapter;
@@ -119,4 +125,24 @@ $di->setShared('session', function () {
     $session->start();
 
     return $session;
+});
+
+$di->setShared(EventStoreUserRepository::class, function () use ($di) {
+    return new EventStoreUserRepository($di->get('db')); // adapter PDO z Phalcona
+});
+
+$di->setShared(UserRepository::class, function () use ($di) {
+    return $di->get(EventStoreUserRepository::class);
+});
+
+$di->setShared(RegisterUserHandler::class, function () use ($di) {
+    return new RegisterUserHandler($di->get(UserRepository::class));
+});
+
+$di->setShared(ChangeUserEmailHandler::class, function () use ($di) {
+    return new ChangeUserEmailHandler($di->get(UserRepository::class));
+});
+
+$di->setShared(UserReadModel::class, function () {
+    return new UserReadModel();
 });

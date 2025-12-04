@@ -1,6 +1,23 @@
 {
     "require-dev": {
         "phalcon/ide-stubs": "^5.9",
-        "phalcon/migrations": "^3.0"
+        "phalcon/migrations": "^3.0",
+        "squizlabs/php_codesniffer": "*",
+        "friendsofphp/php-cs-fixer": "^3.91",
+        "phpstan/phpstan": "^2.1",
+        "phpunit/phpunit": "^12.4"
+    },
+    "scripts": {
+        "php:cs": "phpcs --standard=PSR12 ./app",
+        "cs": "php-cs-fixer fix --dry-run --diff",
+        "cs:fix": "php-cs-fixer fix",
+        "analyse": "phpstan --memory-limit=1G analyse",
+        "test": "phpunit --configuration phpunit.xml.dist --colors=always",
+        "test:coverage": "phpdbg -qrr vendor/bin/phpunit --configuration phpunit.xml.dist --coverage-html var/coverage",
+        "qa": [
+            "@cs",
+            "@analyse",
+            "@test"
+        ]
     }
 }

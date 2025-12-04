@@ -1,4 +1,5 @@
 <?php
+namespace App\Models;
 
 use Phalcon\Filter\Validation;
 use Phalcon\Filter\Validation\Validator\Email as EmailValidator;
