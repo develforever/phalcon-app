@@ -4,6 +4,7 @@ $finder = PhpCsFixer\Finder::create()
 ;
 
 return (new PhpCsFixer\Config())
+    ->setRiskyAllowed(true)
     ->setRules([
         '@PSR12' => true,
         'array_syntax' => ['syntax' => 'short'],
@@ -11,5 +12,6 @@ return (new PhpCsFixer\Config())
         'no_unused_imports' => true,
         'ordered_imports' => true,
         'single_quote' => true,
+        'declare_strict_types' => true,
     ])
     ->setFinder($finder);

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 $loader = new \Phalcon\Autoload\Loader(true);
 
 $loader->setNamespaces(

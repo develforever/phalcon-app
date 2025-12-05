@@ -7,21 +7,21 @@ use AppDomain\Application\User\Handler\RegisterUserHandler;
 use AppDomain\Application\User\Query\UserReadModel;
 use AppDomain\Domain\User\UserRepository;
 use AppDomain\Infrastructure\Persistence\EventStoreUserRepository;
-use Phalcon\Html\Escaper;
 use Phalcon\Flash\Direct as Flash;
+use Phalcon\Html\Escaper;
 use Phalcon\Mvc\Model\Metadata\Memory as MetaDataAdapter;
+use Phalcon\Mvc\Url as UrlResolver;
 use Phalcon\Mvc\View;
 use Phalcon\Mvc\View\Engine\Php as PhpEngine;
 use Phalcon\Mvc\View\Engine\Volt as VoltEngine;
 use Phalcon\Session\Adapter\Stream as SessionAdapter;
 use Phalcon\Session\Manager as SessionManager;
-use Phalcon\Mvc\Url as UrlResolver;
 
 /**
  * Shared configuration service
  */
 $di->setShared('config', function () {
-    return include APP_PATH . "/config/config.php";
+    return include APP_PATH . '/config/config.php';
 });
 
 /**

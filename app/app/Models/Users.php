@@ -1,12 +1,15 @@
 <?php
+
+declare(strict_types=1);
+
 namespace App\Models;
 
+use Phalcon\Db\Adapter\Pdo\Mysql;
 use Phalcon\Filter\Validation;
 use Phalcon\Filter\Validation\Validator\Email as EmailValidator;
 
 class Users extends \Phalcon\Mvc\Model
 {
-
     /**
      *
      * @var string
@@ -52,8 +55,12 @@ class Users extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-        $this->setSchema("phalcon_db");
-        $this->setSource("users");
+        $this->setSource('users');
+        $db = $this->getDI()->get('db');
+
+        if ($db instanceof Mysql) {
+            $this->setSchema('phalcon_db');
+        }
     }
 
     /**

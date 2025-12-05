@@ -12,12 +12,20 @@
         "cs": "php-cs-fixer fix --dry-run --diff",
         "cs:fix": "php-cs-fixer fix",
         "analyse": "phpstan --memory-limit=1G analyse",
-        "test": "phpunit --configuration phpunit.xml.dist --colors=always",
+        "test": [
+            "@putenv XDEBUG_MODE=coverage",
+            "XDEBUG_MODE=coverage phpunit --configuration phpunit.xml --coverage-html coverage --colors=always"
+        ],
         "test:coverage": "phpdbg -qrr vendor/bin/phpunit --configuration phpunit.xml.dist --coverage-html var/coverage",
         "qa": [
             "@cs",
             "@analyse",
             "@test"
         ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests"
+        }
     }
 }

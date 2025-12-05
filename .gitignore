@@ -1,1 +1,9 @@
 vendor/
+coverage/
+!/coverage/.gitkeep
+*.cache/
+*.cache
+phpunit.xml
+tmp/
+!tmp/.gitkeep
+
